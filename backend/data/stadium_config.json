@@ -1,0 +1,53 @@
+{
+  "stadium": {
+    "name": "MetLife Stadium",
+    "capacity": 52000,
+    "event": "NFL Week 14 — Giants vs Eagles",
+    "zones": [
+      {"id": "gate-a", "name": "Gate A (North)", "type": "gate", "capacity": 5000, "lat": 40.8135, "lon": -74.0745},
+      {"id": "gate-b", "name": "Gate B (East)", "type": "gate", "capacity": 5000, "lat": 40.8128, "lon": -74.0730},
+      {"id": "gate-c", "name": "Gate C (South)", "type": "gate", "capacity": 5000, "lat": 40.8121, "lon": -74.0745},
+      {"id": "gate-d", "name": "Gate D (West)", "type": "gate", "capacity": 5000, "lat": 40.8128, "lon": -74.0760},
+      {"id": "north-stand", "name": "North Stand", "type": "seating", "capacity": 12000},
+      {"id": "south-stand", "name": "South Stand", "type": "seating", "capacity": 12000},
+      {"id": "east-stand", "name": "East Stand", "type": "seating", "capacity": 10000},
+      {"id": "west-stand", "name": "West Stand", "type": "seating", "capacity": 10000},
+      {"id": "food-n", "name": "Food Court North", "type": "concession", "capacity": 800, "counters": 8},
+      {"id": "food-s", "name": "Food Court South", "type": "concession", "capacity": 800, "counters": 8},
+      {"id": "vip-lounge", "name": "VIP Lounge", "type": "vip", "capacity": 500},
+      {"id": "merch", "name": "Merchandise Store", "type": "retail", "capacity": 500},
+      {"id": "restroom-ne", "name": "Restroom NE", "type": "facility", "capacity": 300, "stalls": 12},
+      {"id": "restroom-sw", "name": "Restroom SW", "type": "facility", "capacity": 300, "stalls": 12},
+      {"id": "medical", "name": "Medical Bay", "type": "medical", "capacity": 50},
+      {"id": "parking-1", "name": "Parking Lot 1", "type": "parking", "capacity": 8000},
+      {"id": "parking-2", "name": "Parking Lot 2", "type": "parking", "capacity": 6000},
+      {"id": "parking-3", "name": "Parking Lot 3", "type": "parking", "capacity": 4000}
+    ],
+    "iot_sensors": [
+      {"id": "cam-01", "type": "camera", "zone": "gate-a", "status": "active"},
+      {"id": "cam-02", "type": "camera", "zone": "gate-b", "status": "active"},
+      {"id": "cam-03", "type": "camera", "zone": "gate-c", "status": "active"},
+      {"id": "cam-04", "type": "camera", "zone": "gate-d", "status": "active"},
+      {"id": "cam-05", "type": "camera", "zone": "north-stand", "status": "active"},
+      {"id": "cam-06", "type": "camera", "zone": "south-stand", "status": "active"},
+      {"id": "thermo-01", "type": "thermal", "zone": "food-n", "status": "active"},
+      {"id": "thermo-02", "type": "thermal", "zone": "food-s", "status": "active"},
+      {"id": "count-01", "type": "people_counter", "zone": "gate-a", "status": "active"},
+      {"id": "count-02", "type": "people_counter", "zone": "gate-b", "status": "active"},
+      {"id": "count-03", "type": "people_counter", "zone": "gate-c", "status": "active"},
+      {"id": "count-04", "type": "people_counter", "zone": "gate-d", "status": "active"},
+      {"id": "wifi-01", "type": "wifi_probe", "zone": "north-stand", "status": "active"},
+      {"id": "wifi-02", "type": "wifi_probe", "zone": "south-stand", "status": "active"},
+      {"id": "pressure-01", "type": "pressure_mat", "zone": "food-n", "status": "active"},
+      {"id": "pressure-02", "type": "pressure_mat", "zone": "food-s", "status": "active"}
+    ],
+    "teams": [
+      {"id": "alpha", "name": "Alpha Team", "lead": "AJ Martinez", "role": "security", "zone": "gate-a"},
+      {"id": "bravo", "name": "Bravo Team", "lead": "R. Kapoor", "role": "crowd-ops", "zone": "north-stand"},
+      {"id": "charlie", "name": "Charlie Team", "lead": "S. Chen", "role": "operations", "zone": "food-s"},
+      {"id": "delta", "name": "Delta Team", "lead": "D. Lee", "role": "security", "zone": "east-stand"},
+      {"id": "echo", "name": "Echo Team", "lead": "E. Nakamura", "role": "medical", "zone": "medical"},
+      {"id": "medic1", "name": "Medic-1", "lead": "Dr. A. Patel", "role": "medical", "zone": "medical"}
+    ]
+  }
+}
