@@ -177,7 +177,7 @@ PromptWars_week1/
 
 ## 📜 License
 
-MIT License — Built for PromptWars Week 1 Hackathon.
+MIT License — Built for Hackathon Project.
 
 ---
 
