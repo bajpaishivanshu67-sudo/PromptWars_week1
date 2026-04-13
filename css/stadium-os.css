@@ -1262,3 +1262,122 @@ body {
 .page-view--active {
   display: grid;
 }
+
+
+/* ---- Dropdown Menus ---- */
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  width: 250px;
+  background: var(--bg-surface-hover);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 15px;
+  box-shadow: var(--shadow-float);
+  z-index: 1000;
+  animation: slideUp 0.3s var(--ease-out-expo);
+}
+
+
+/* ---- Dropdown Menus ---- */
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  width: 250px;
+  background: var(--bg-surface-hover);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 15px;
+  box-shadow: var(--shadow-float);
+  z-index: 1000;
+  animation: slideUp 0.3s var(--ease-out-expo);
+}
+
+.dropdown-wrapper:hover .dropdown-menu {
+  display: block;
+}
+
+/* ---- Floating Copilot ---- */
+.floating-copilot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease-out-expo);
+  transform-origin: bottom right;
+}
+
+.floating-copilot--collapsed {
+  transform: translateY(calc(100% - 40px));
+}
+
+.floating-copilot__header {
+  padding: 10px 15px;
+  background: rgba(139, 92, 246, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.floating-copilot__body {
+  padding: 10px;
+}
+
+/* Scrollbar hides for chips */
+.copilot-chips::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Toast Notification ---- */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(16, 185, 129, 0.9);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  z-index: 2000;
+  font-weight: 600;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.toast-notification--show {
+  opacity: 1;
+  transform: translateY(0);
+}

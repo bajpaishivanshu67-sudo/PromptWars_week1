@@ -46,6 +46,27 @@ class StadiumOS {
 
     // Bind navigation route selector
     this.bindNavRoutes();
+
+    // Bind floating copilot
+    this.bindCopilotToggle();
+
+    // Bind all action buttons to show interactive toast notifications
+    this.bindActionButtons();
+  }
+
+  bindCopilotToggle() {
+    const toggle = document.getElementById('copilot-toggle');
+    const copilot = document.getElementById('floating-copilot');
+    const caret = document.getElementById('copilot-caret');
+    if (toggle && copilot) {
+      toggle.addEventListener('click', () => {
+        const isCollapsed = copilot.classList.toggle('floating-copilot--collapsed');
+        if (caret) caret.textContent = isCollapsed ? '▲' : '▼';
+      });
+      // Start hidden/collapsed
+      copilot.classList.add('floating-copilot--collapsed');
+      if (caret) caret.textContent = '▲';
+    }
   }
 
   setupNavigation() {
@@ -134,6 +155,49 @@ class StadiumOS {
         }
       });
     });
+  }
+
+  bindActionButtons() {
+    // Create toast container if missing
+    let toast = document.getElementById('global-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'global-toast';
+      toast.className = 'toast-notification';
+      document.body.appendChild(toast);
+    }
+
+    document.querySelectorAll('.twin-control-btn, .topbar__btn').forEach(btn => {
+      // Don't override nav and twin mode buttons if they have other dedicated logic, 
+      // but we append a listener anyway so they feel interactive globally.
+      btn.addEventListener('click', (e) => {
+        const text = btn.innerText.trim().split('\n')[0] || 'Action triggered';
+        // Ignore clicks on simple icon buttons where text is just an emoji
+        if (text.length <= 2 && btn.classList.contains('topbar__btn')) return;
+        
+        // Show fading notification
+        this.showToast(`Action Executed: ${text}`);
+
+        // Visual flash on button
+        const originalBg = btn.style.backgroundColor;
+        btn.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+        setTimeout(() => {
+          btn.style.backgroundColor = originalBg;
+        }, 300);
+      });
+    });
+  }
+
+  showToast(message) {
+    const toast = document.getElementById('global-toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('toast-notification--show');
+    
+    if (this._toastTimer) clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => {
+      toast.classList.remove('toast-notification--show');
+    }, 3000);
   }
 }
 
