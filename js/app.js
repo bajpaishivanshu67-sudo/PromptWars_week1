@@ -68,12 +68,6 @@ class StadiumOS {
       panel.classList.toggle('page-view--active', panel.dataset.page === view);
     });
 
-    // Dashboard is special (default grid)
-    const dashboard = document.getElementById('dashboard-grid');
-    if (dashboard) {
-      dashboard.style.display = view === 'dashboard' ? 'grid' : 'none';
-    }
-
     this.currentView = view;
 
     // Re-render canvases on view switch

@@ -1,90 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="StadiumOS Antigravity — AI-powered command center for large-scale sporting venues. Real-time crowd management, predictive analytics, and emergency coordination.">
-  <title>StadiumOS Antigravity — AI Stadium Command Center</title>
-  <link rel="stylesheet" href="css/stadium-os.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🏟️</text></svg>">
-</head>
-<body>
+with open('index.html', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
 
-  <!-- Antigravity Particle Background -->
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- Ambient Light Orbs -->
-  <div class="ambient-orb ambient-orb--primary"></div>
-  <div class="ambient-orb ambient-orb--secondary"></div>
-  <div class="ambient-orb ambient-orb--cyan"></div>
-
-  <!-- App Shell -->
-  <div class="app">
-
-    <!-- ===== Sidebar Navigation ===== -->
-    <nav class="sidebar">
-      <div class="sidebar__logo" title="StadiumOS">⚡</div>
-      <div class="sidebar__nav">
-        <div class="sidebar__item sidebar__item--active" data-view="dashboard" id="nav-dashboard">
-          🏠 <span class="tooltip">Dashboard</span>
-        </div>
-        <div class="sidebar__item" data-view="heatmap" id="nav-heatmap">
-          🔥 <span class="tooltip">Crowd Heatmap</span>
-        </div>
-        <div class="sidebar__item" data-view="queues" id="nav-queues">
-          ⏱️ <span class="tooltip">Queue Management</span>
-        </div>
-        <div class="sidebar__item" data-view="emergency" id="nav-emergency">
-          🚨 <span class="tooltip">Emergency Console</span>
-        </div>
-        <div class="sidebar__item" data-view="analytics" id="nav-analytics">
-          📊 <span class="tooltip">Analytics</span>
-        </div>
-        <div class="sidebar__item" data-view="twin" id="nav-twin">
-          🏗️ <span class="tooltip">Digital Twin</span>
-        </div>
-        <div class="sidebar__item" data-view="navigation" id="nav-navigation">
-          🗺️ <span class="tooltip">Navigation</span>
-        </div>
-        <div class="sidebar__item" data-view="copilot" id="nav-copilot">
-          🤖 <span class="tooltip">AI Copilot</span>
-        </div>
-        <div class="sidebar__item" data-view="teams" id="nav-teams">
-          👥 <span class="tooltip">Teams</span>
-        </div>
-      </div>
-      <div class="sidebar__bottom">
-        <div class="sidebar__status" title="Systems Online"></div>
-      </div>
-    </nav>
-
-    <!-- ===== Main Area ===== -->
-    <main class="main">
-
-      <!-- Top Bar -->
-      <header class="topbar">
-        <div class="topbar__left">
-          <div>
-            <div class="topbar__title">StadiumOS Antigravity</div>
-            <div class="topbar__subtitle">MetLife Stadium • NFL Week 14 — Giants vs Eagles</div>
-          </div>
-          <div class="live-badge">
-            <div class="live-badge__dot"></div>
-            LIVE
-          </div>
-        </div>
-        <div class="topbar__right">
-          <div class="topbar__clock" id="topbar-clock">00:00:00</div>
-          <button class="topbar__btn" id="btn-alerts" title="Alerts">
-            🔔 <span class="notif-dot"></span>
-          </button>
-          <button class="topbar__btn" id="btn-settings" title="Settings">⚙️</button>
-          <div class="topbar__avatar" title="Admin">SB</div>
-        </div>
-      </header>
-
-      <!-- ===== Dashboard View (Default) ===== -->
-
+new_html = """
       <!-- ===== Dashboard Tab (Default) ===== -->
       <div class="page-view page-view--active" data-page="dashboard" id="dashboard-grid">
         <div class="stats-row" style="margin-bottom: 24px;">
@@ -426,21 +343,21 @@
           </div>
         </div>
       </div>
+"""
 
-    </main>
+start_idx = -1
+end_idx = -1
+for i, line in enumerate(lines):
+    if '<div class="dashboard" id="dashboard-grid">' in line:
+        start_idx = i
+    if '</div><!-- /dashboard -->' in line:
+        end_idx = i
+        break
 
-  </div><!-- /app -->
-
-  <!-- Scripts (order matters) -->
-  <script src="js/particles.js"></script>
-  <script src="js/heatmap.js"></script>
-  <script src="js/queue-manager.js"></script>
-  <script src="js/emergency.js"></script>
-  <script src="js/analytics.js"></script>
-  <script src="js/ai-copilot.js"></script>
-  <script src="js/digital-twin.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="js/app.js"></script>
-
-</body>
-</html>
+if start_idx != -1 and end_idx != -1:
+    lines = lines[:start_idx] + [new_html] + lines[end_idx+1:]
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.writelines(lines)
+    print("Success")
+else:
+    print("Failed to find boundaries", start_idx, end_idx)
